@@ -1,0 +1,39 @@
+{
+    // See https://go.microsof"t.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "${env:PATH};${env:USERPROFILE}/.local/opt/BuildTools/2.12-20190422-1053/bin;${env:USERPROFILE}/.local/opt/gcc-arm-none-eabi-9-2019-q4-major-win32/bin",
+                }
+            },
+            "command": "make PROBE_HOST=stlink",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "${env:PATH};${env:USERPROFILE}/.local/opt/BuildTools/2.12-20190422-1053/bin;${env:USERPROFILE}/.local/opt/gcc-arm-none-eabi-9-2019-q4-major-win32/bin",
+                }
+            },
+            "command": "make clean",
+            "problemMatcher": []
+        }
+    ]
+}

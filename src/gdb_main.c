@@ -192,7 +192,6 @@ int gdb_main_loop(struct target_controller *tc, bool in_syscall)
 			switch (reason) {
 			case TARGET_HALT_ERROR:
 				gdb_putpacket_f("X%02X", GDB_SIGLOST);
-				morse("TARGET LOST.", true);
 				break;
 			case TARGET_HALT_REQUEST:
 				gdb_putpacket_f("T%02X", GDB_SIGINT);

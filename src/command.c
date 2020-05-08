@@ -49,7 +49,6 @@ static bool cmd_help(target *t, int argc, char **argv);
 static bool cmd_jtag_scan(target *t, int argc, char **argv);
 static bool cmd_swdp_scan(target *t, int argc, char **argv);
 static bool cmd_targets(target *t, int argc, char **argv);
-static bool cmd_morse(target *t, int argc, char **argv);
 static bool cmd_halt_timeout(target *t, int argc, const char **argv);
 static bool cmd_connect_srst(target *t, int argc, const char **argv);
 static bool cmd_hard_srst(target *t, int argc, const char **argv);
@@ -70,7 +69,6 @@ const struct command_s cmd_list[] = {
 	{"jtag_scan", (cmd_handler)cmd_jtag_scan, "Scan JTAG chain for devices" },
 	{"swdp_scan", (cmd_handler)cmd_swdp_scan, "Scan SW-DP for devices" },
 	{"targets", (cmd_handler)cmd_targets, "Display list of available targets" },
-	{"morse", (cmd_handler)cmd_morse, "Display morse error message" },
 	{"halt_timeout", (cmd_handler)cmd_halt_timeout, "Timeout (ms) to wait until Cortex-M is halted: (Default 2000)" },
 	{"connect_srst", (cmd_handler)cmd_connect_srst, "Configure connect under SRST: (enable|disable)" },
 	{"hard_srst", (cmd_handler)cmd_hard_srst, "Force a pulse on the hard SRST line - disconnects target" },
@@ -203,7 +201,6 @@ static bool cmd_jtag_scan(target *t, int argc, char **argv)
 		return false;
 	}
 	cmd_targets(NULL, 0, NULL);
-	morse(NULL, false);
 	return true;
 }
 
@@ -238,7 +235,6 @@ bool cmd_swdp_scan(target *t, int argc, char **argv)
 	}
 
 	cmd_targets(NULL, 0, NULL);
-	morse(NULL, false);
 	return true;
 
 }
@@ -263,16 +259,6 @@ bool cmd_targets(target *t, int argc, char **argv)
 		return false;
 	}
 
-	return true;
-}
-
-bool cmd_morse(target *t, int argc, char **argv)
-{
-	(void)t;
-	(void)argc;
-	(void)argv;
-	if(morse_msg)
-		gdb_outf("%s\n", morse_msg);
 	return true;
 }
 

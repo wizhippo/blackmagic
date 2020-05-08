@@ -49,7 +49,6 @@ main(int argc, char **argv)
 		if (e.type) {
 			gdb_putpacketz("EFF");
 			target_list_free();
-			morse("TARGET LOST.", 1);
 		}
 	}
 
